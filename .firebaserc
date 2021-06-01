@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "kanban-12e8b": {
+      "hosting": {
+        "kanban": [
+          "kanban-12e8b"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<form (ngSubmit)="addTask()" [formGroup]="addTaskForm">
+  <mat-form-field class="example-full-width">
+    <mat-label>Add New Task</mat-label>
+    <input matInput formControlName="task" >
+  </mat-form-field>
+  <button type="submit">Add</button>
+</form>

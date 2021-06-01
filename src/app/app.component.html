@@ -1,0 +1,88 @@
+<section>
+
+  <mat-progress-bar mode="determinate" *ngIf="autoSaveTimer" [value]="autoSaveTimer"></mat-progress-bar>
+
+  <header>
+    <!-- <button (click)="logIn()" *ngIf="!user">Log In</button> -->
+    <!-- <ng-container *ngIf="user">Hi {{user.name}}</ng-container> -->
+
+    <!-- <button (click)="logOut()" *ngIf="user">Log Out</button> -->
+    <button mat-button  (click)="logIn()"  *ngIf="!user">Login</button>
+    <button mat-button [matMenuTriggerFor]="userMenu" *ngIf="user">{{user.name}}</button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item *ngFor="let item of userMenuItems"><mat-icon aria-hidden="false" aria-label="Example home icon">{{item.icon}}</mat-icon>{{item.title}}</button>
+      <button mat-menu-item (click)="logOut()"><mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>Logout</button>
+    </mat-menu>
+</header>
+
+<h1>KanBan Board</h1>
+<app-add-task *ngIf="user" [user]="user" (onSave$)="saveData($event)"></app-add-task>
+<main>
+
+  <div>
+    <h2>Todo</h2>
+    <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="kanbanBoard.todo"
+    [cdkDropListConnectedTo]="[inProgressList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box example-box-todo" *ngFor="let item of kanbanBoard.todo" cdkDrag>
+      {{item}}
+      <button (click)="removeTask(item, 'todo')">X</button>
+    </div>
+  </div>
+  </div>
+
+  <div>
+    <h2>In Progress</h2>
+    <div
+    cdkDropList
+    #inProgressList="cdkDropList"
+    [cdkDropListData]="kanbanBoard.inProgress"
+    [cdkDropListConnectedTo]="[todoList, reviewList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box example-box-inprogress" *ngFor="let item of kanbanBoard.inProgress" cdkDrag>
+      {{item}}
+      <button (click)="removeTask(item, 'inProgress')">X</button>
+    </div>
+  </div>
+  </div>
+
+  <div>
+    <h2>Review</h2>
+    <div
+    cdkDropList
+    #reviewList="cdkDropList"
+    [cdkDropListData]="kanbanBoard.review"
+    [cdkDropListConnectedTo]="[inProgressList, completedList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box example-box-review" *ngFor="let item of kanbanBoard.review" cdkDrag>
+      {{item}}
+      <button (click)="removeTask(item, 'review')">X</button>
+    </div>
+  </div>
+  </div>
+
+  <div>
+    <h2>Completed</h2>
+    <div
+    cdkDropList
+    #completedList="cdkDropList"
+    [cdkDropListData]="kanbanBoard.completed"
+    [cdkDropListConnectedTo]="[reviewList, todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box example-box-completed" *ngFor="let item of kanbanBoard.completed" cdkDrag>
+      {{item}}
+      <button (click)="removeTask(item, 'completed')">X</button>
+    </div>
+  </div>
+  </div>
+
+</main>
+
+</section>
