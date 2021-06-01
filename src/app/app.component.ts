@@ -91,7 +91,7 @@ constructor(private snackBar: MatSnackBar, private authService:AuthService, priv
 
   }
 
-  saveData(task?) {
+  async saveData(task?) {
     if(task) {
       if(this.autoSaveTimeout) clearTimeout(this.autoSaveTimeout);
       if(this.autoSaveTimerInterval) {
@@ -103,7 +103,7 @@ constructor(private snackBar: MatSnackBar, private authService:AuthService, priv
     }
 
     else{
-      this.coreService.saveBoard(this.user.uid, this.kanbanBoard);
+      await this.coreService.saveBoard(this.user.uid, this.kanbanBoard);
       this.snackBar.open('Saved Successfully', null, {duration: 1000});
     }
 
