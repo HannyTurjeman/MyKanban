@@ -8,6 +8,14 @@ section
     background-color: blueviolet;
     color: white;
     margin: 0 0 2rem 0;
+
+
+      .name {
+        font-size: 15px;
+      }
+      .login {
+        font-size: 15px;
+      }
    }
 
    h1 {
@@ -21,6 +29,15 @@ section
 
     h2 {
       text-align: center;
+    }
+
+    .x {
+      border-radius: 4px;
+      background-color: transparent;
+      color:blueviolet;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
     }
 
    }

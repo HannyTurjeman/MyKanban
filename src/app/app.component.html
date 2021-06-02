@@ -7,8 +7,8 @@
     <!-- <ng-container *ngIf="user">Hi {{user.name}}</ng-container> -->
 
     <!-- <button (click)="logOut()" *ngIf="user">Log Out</button> -->
-    <button mat-button  (click)="logIn()"  *ngIf="!user">Login</button>
-    <button mat-button [matMenuTriggerFor]="userMenu" *ngIf="user">{{user.name}}</button>
+    <button class="login" mat-button  (click)="logIn()"  *ngIf="!user">Login</button>
+    <button class="name" mat-button [matMenuTriggerFor]="userMenu" *ngIf="user">{{user.name}}</button>
     <mat-menu #userMenu="matMenu">
       <button mat-menu-item *ngFor="let item of userMenuItems"><mat-icon aria-hidden="false" aria-label="Example home icon">{{item.icon}}</mat-icon>{{item.title}}</button>
       <button mat-menu-item (click)="logOut()"><mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>Logout</button>
@@ -30,7 +30,7 @@
     (cdkDropListDropped)="drop($event)">
     <div class="example-box example-box-todo" *ngFor="let item of kanbanBoard.todo" cdkDrag>
       {{item}}
-      <button (click)="removeTask(item, 'todo')">X</button>
+      <button class="x"(click)="removeTask(item, 'todo')">X</button>
     </div>
   </div>
   </div>
@@ -46,7 +46,7 @@
     (cdkDropListDropped)="drop($event)">
     <div class="example-box example-box-inprogress" *ngFor="let item of kanbanBoard.inProgress" cdkDrag>
       {{item}}
-      <button (click)="removeTask(item, 'inProgress')">X</button>
+      <button class="x" (click)="removeTask(item, 'inProgress')">X</button>
     </div>
   </div>
   </div>
@@ -62,7 +62,7 @@
     (cdkDropListDropped)="drop($event)">
     <div class="example-box example-box-review" *ngFor="let item of kanbanBoard.review" cdkDrag>
       {{item}}
-      <button (click)="removeTask(item, 'review')">X</button>
+      <button class="x" (click)="removeTask(item, 'review')">X</button>
     </div>
   </div>
   </div>
@@ -78,7 +78,7 @@
     (cdkDropListDropped)="drop($event)">
     <div class="example-box example-box-completed" *ngFor="let item of kanbanBoard.completed" cdkDrag>
       {{item}}
-      <button (click)="removeTask(item, 'completed')">X</button>
+      <button class="x" (click)="removeTask(item, 'completed')">X</button>
     </div>
   </div>
   </div>
